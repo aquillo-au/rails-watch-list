@@ -1,0 +1,13 @@
+<h1> Your lists </h1>
+<ul>
+  <% @lists.each do |list| %>
+    <li>
+      <%=list.name %>
+      <%= link_to "See details", list_path(list.id), class: "btn btn-secondary"%>
+    </li>
+  <% end %>
+</ul>
+<%= simple_form_for(@list) do |f| %>
+  <%= f.input :name %>
+  <%= f.submit %>
+<% end %>
