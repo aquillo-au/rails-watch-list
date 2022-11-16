@@ -47,6 +47,8 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 
+gem "cloudinary"
+
 # Use Sass to process CSS
 gem "sassc-rails"
 
