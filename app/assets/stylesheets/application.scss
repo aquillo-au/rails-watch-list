@@ -13,3 +13,24 @@
 
 // tom select
 @import "tom-select/dist/css/tom-select.min.css";
+
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.grid-item {
+  background-color: rgba(235, 225, 225, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  margin: 2px;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.grid-item-mark{
+  background-color: rgba(232, 235, 225, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  margin: 2px;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}

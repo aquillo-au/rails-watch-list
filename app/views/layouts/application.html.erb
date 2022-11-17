@@ -11,6 +11,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <h1> Ben's amazing Movies </h1>
+        <h1 class="navbar-brand">
+          <%=  link_to 'Lists', lists_path, class:"text-decoration-none" %>
+        </h1>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
   </body>
 </html>

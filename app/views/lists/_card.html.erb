@@ -1,0 +1,21 @@
+  <div class="grid-item">
+    <div class="col-12">
+      <%=list.name %>
+    </div>
+    <div class="col-12 mb-4">
+      <div class="text-center">
+        <% if list.poster.attached? %>
+          <%= cl_image_tag list.poster.key, height: 200, width: 200, crop: :fill %>
+        <% else %>
+          <% url = 'https://source.unsplash.com/random?' + list.name %>
+          <%= image_tag url, height: 200, width: 200 %>
+          <% cloud = Cloudinary::Uploader.upload(url) %>
+          <% downloaded_image = Down.download(cloud["url"]) %>
+          <% list.poster.attach(io: downloaded_image  , filename: "#{list.name}.jpg") %>
+        <% end %>
+      </div>
+      <div class="col-12">
+        <%= link_to "See details", list_path(list.id), class: "btn btn-secondary", style: "width:200px"%>
+      </div>
+    </div>
+  </div>

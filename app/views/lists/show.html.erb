@@ -1,35 +1,42 @@
-<h1> <%= @list.name %> </h1>
-        <%= cl_image_tag(@list.poster.key, height: 200, width: 200, crop: :fill) %>
-        <% url = 'https://source.unsplash.com/random?' + @list.name %>
-        <%# <%= image_tag url, width: 200 unless @list.poster.attached?%> %>
-<%= link_to "Add a bookmark", new_list_bookmark_path(@list), class: "btn btn-primary"%>
-<ul>
-  <% @list.bookmarks.each do |mark| %>
-      <li>
-        <%= mark.comment %>
-        <ul>
-          <li>
-            <%= mark.movie.title %>
-            <%= image_tag mark.movie.poster_url, alt: "#{mark.movie.title} poster", width: 200 %>
-          </li>
+<div>
+  <h1> <%= @list.name %> </h1>
+        <% if @list.poster.attached? %>
+          <%= cl_image_tag @list.poster.key, height: 300, width: 300, crop: :fill %>
+          </div>
+          <% else %>
+          <% url = 'https://source.unsplash.com/random?' + @list.name %>
+          <%= image_tag url, width: 300 %>
+        <% end %>
+  <%= link_to "Add a bookmark", new_list_bookmark_path(@list), class: "btn btn-primary"%>
+</div>
+<div class="grid-container">
+    <% @list.bookmarks.each do |mark| %>
+    <div class="grid-item-mark">
+      <strong> <%= mark.comment %> </strong>
+        <div>
+          <%= mark.movie.title %>
+          <%= image_tag mark.movie.poster_url, alt: "#{mark.movie.title} poster", width: 200 %>
+          <div>
             <%= mark.movie.overview %>
             <%= "#{mark.movie.rating}/10"%>
-            <table border="1">
-              <tbody>
-                <tr>
-                  <td>Rating</td>
-                    <%star = ""%>
-                    <% (mark.movie.rating.to_i / 2).times{ |i| star << "⭐"}%>
-                    <%  star << " out of ⭐⭐⭐⭐⭐"%>
-                  <td> <%= star %></td>
-                </tr>
-              </tbody>
-            </table>
-        </ul>
-      </li>
-      <%= link_to "Delete",
-        bookmark_path(mark),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-      %>
-  <% end %>
-</ul>
+          </div>
+          <table border="1">
+            <tbody>
+              <tr>
+                <td>Rating</td>
+                  <%star = ""%>
+                  <% (mark.movie.rating.to_i / 2).times{ |i| star << "⭐"}%>
+                  <%  star << " out of ⭐⭐⭐⭐⭐"%>
+                <td> <%= star %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+        <%= link_to "Delete",
+          bookmark_path(mark),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+        %>
+    <% end %>
+  </ul>
+</div>
