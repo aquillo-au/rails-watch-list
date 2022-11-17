@@ -3,11 +3,21 @@
   <% @lists.each do |list| %>
     <li>
       <%=list.name %>
+      <% if list.poster.attached? %>
+        <%= cl_image_tag list.poster.key, height: 200, width: 200, crop: :fill %>
+        </div>
+        <% else %>
+        <% url = 'https://source.unsplash.com/random?' + list.name %>
+        <%= image_tag url, width: 200 %>
+      <% end %>
+
       <%= link_to "See details", list_path(list.id), class: "btn btn-secondary"%>
     </li>
   <% end %>
 </ul>
 <%= simple_form_for(@list) do |f| %>
   <%= f.input :name %>
+  <%= f.input :poster, as: :file %>
   <%= f.submit %>
 <% end %>
+<%= cl_image_tag("ow4rr75zm0entmt7wok1", width: 400, height: 300, crop: :fill) %>
